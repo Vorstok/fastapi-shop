@@ -7,7 +7,7 @@ class ProductRepository:
     def __init__(self, db: Session):
         self.db = db
     
-    def get_all(self) -> List[Product:]
+    def get_all(self) -> List[Product]:
         return self.db.querry(Product).options(joinedload(Product.category)).all()
     
     def get_by_id(self, product_id: int) -> Optional[Product]:
