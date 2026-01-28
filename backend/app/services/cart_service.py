@@ -37,7 +37,7 @@ class CartService:
         if product_id not in cart_data:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f'Product with id {item.product_id} not found'
+                detail=f'Product with id {product_id} not found'
                 )
         
         del cart_data[product_id]
@@ -62,10 +62,10 @@ class CartService:
 
                 cart_item = CartItem(product_id=product.id, name=product.name,
                     price=product.price, quantity=quantity,subtotal=subtotal,
-                    image_url=product.image.image_url)
+                    image_url=product.image_url)
 
                 cart_items.append(cart_item)
                 total_price += subtotal
-                total_items =  quantity
+                total_items +=  quantity
         return CartResponse(items=cart_items, total=round(total_price), items_count=total_items)
 

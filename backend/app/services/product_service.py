@@ -34,7 +34,7 @@ class ProductService:
             )
         products = self.product_repository.get_by_category(category_id)
         products_response = [ProductResponse.model_validate(prod) for prod in products]
-        return ProductListResponse(product=products_response, total=len(products_response))
+        return ProductListResponse(products=products_response, total=len(products_response))
     
     def create_product(self, product_data: ProduceCreate) -> ProductResponse:
         category = self.category_repository.get_by_id(product_data.category_id)
